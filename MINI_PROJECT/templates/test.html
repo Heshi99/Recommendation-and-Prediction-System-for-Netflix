@@ -1,0 +1,94 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommendation and Prediction System</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 10px;
+        }
+        .form-container {
+            max-width: 500px; /* Set the maximum width as needed */
+            margin: auto; /* Center the container horizontally */
+        }
+        .btn-container {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <div class="form-container">
+            <div class="mb-4">
+                <h2>Get Movie Recommendations</h2>
+                <form method="GET" action="/recommendations">
+                    <div class="form-group">
+                        <label for="title">Enter a movie title:</label>
+                        <input type="text" class="form-control" id="title" name="title" required>
+                    </div>
+                    <div class="btn-container">
+                        <button type="submit" class="btn btn-primary">Get Recommendations</button>
+                    </div>
+                </form>
+            </div>
+
+            {% if recommendations %}
+                <div class="mb-4">
+                    <h3>Recommendations for "{{ request.args.get('title') }}":</h3>
+                    <ul class="list-group">
+                        {% for movie in recommendations %}
+                            <li class="list-group-item">{{ movie }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% elif error %}
+                <div class="mb-4">
+                    <p>{{ error }}</p>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="form-container">
+            <div class="mb-4">
+                <h2>Predict Movie Success</h2>
+                <form method="POST" action="/">
+                    <div class="form-group">
+                        <label for="imdb_score">IMDB Score:</label>
+                        <input type="number" class="form-control" id="imdb_score" name="imdb_score" step="0.1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="imdb_votes">IMDB Votes:</label>
+                        <input type="number" class="form-control" id="imdb_votes" name="imdb_votes" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tmdb_score">TMDB Score:</label>
+                        <input type="number" class="form-control" id="tmdb_score" name="tmdb_score" step="0.1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tmdb_popularity">TMDB Popularity:</label>
+                        <input type="number" class="form-control" id="tmdb_popularity" name="tmdb_popularity" step="0.1" required>
+                    </div>
+                    <div class="btn-container">
+                        <button type="submit" class="btn btn-primary">Predict Success</button>
+                    </div>
+                </form>
+            </div>
+
+            {% if prediction %}
+                <div class="mb-4">
+                    <h3>{{ prediction }}</h3>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

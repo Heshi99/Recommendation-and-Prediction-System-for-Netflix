@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommendation and Prediction System</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body{
+            background-image: url('/static/homewall.jpg'); 
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .btn-container .btn {
+            margin-bottom: 20px;
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+        .btn-container .btn:hover {
+            background-color: white;
+            color: black;
+        }
+        .heading {
+            text-align: center;
+            color: white;
+            font-size: 3em;
+            margin-bottom: 30px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body style="background-color: black;">
+    <div class="container">
+        <h1 class="heading" style="text-align: center; "><strong> Recommendation and Prediction System for Netflix</strong></h1>
+
+        <div class="btn-container text-center">
+            <a href="/recommendations" class="btn btn-primary btn-lg">Get Movie Recommendations</a>
+            <a href="/predict" class="btn btn-primary btn-lg">Predict Movie Success</a>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
